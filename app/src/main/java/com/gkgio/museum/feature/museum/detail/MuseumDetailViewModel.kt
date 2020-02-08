@@ -5,14 +5,17 @@ import com.gkgio.horoscope.utils.SingleLiveEvent
 import com.gkgio.museum.base.BaseViewModel
 import com.gkgio.museum.ext.isNonInitialized
 import com.gkgio.museum.feature.model.Exhibition
+import com.gkgio.museum.feature.model.Item
 import com.gkgio.museum.feature.model.Museum
 import com.gkgio.museum.feature.museum.MuseumsViewModel
+import com.gkgio.museum.navigation.Screens
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class MuseumDetailViewModel @Inject constructor(
+    private val router: Router
 ) : BaseViewModel() {
 
-    val openItem = SingleLiveEvent<Exhibition>()
     val state = MutableLiveData<State>()
 
     fun init(type: String, exhibitionsList: List<Exhibition>) {
@@ -28,7 +31,9 @@ class MuseumDetailViewModel @Inject constructor(
     }
 
     fun onExhibitionClick(exhibition: Exhibition) {
-        openItem.value = exhibition
+        exhibition.items?.let {
+            router.navigateTo(Screens.ItemsFramentScreen(exhibition.title, it))
+        }
     }
 
     data class State(

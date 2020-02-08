@@ -47,10 +47,6 @@ class MuseumDetailFragment : BaseFragment<MuseumDetailViewModel>() {
 
         viewModel.init(type, exhibitionsList)
 
-        viewModel.openItem.observeValue(this) {
-            showDialog(AudioPlayerSheet.newInstance(null, it.items!![0]), TAG)
-        }
-
         viewModel.state.observeValue(this) { state ->
             state.exhibitionsList?.let {
                 exhibitionsAdapter?.setExhibitionsList(it)

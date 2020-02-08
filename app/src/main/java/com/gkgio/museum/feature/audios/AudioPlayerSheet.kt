@@ -59,7 +59,7 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
 
             val mediaPlayer: MediaPlayer? = MediaPlayer().apply {
                 setAudioStreamType(AudioManager.STREAM_MUSIC)
-                setDataSource("https://www.kozco.com/tech/piano2-CoolEdit.mp3")
+                setDataSource(it.audioFiles[0])
                 prepare() // might take long! (for buffering, etc)
                 start()
             }
@@ -68,6 +68,5 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
                 player.release()
             }
         }
-
     }
 }

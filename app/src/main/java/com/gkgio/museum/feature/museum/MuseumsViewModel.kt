@@ -116,7 +116,7 @@ class MuseumsViewModel @Inject constructor(
                 it["author"] as String,
                 it["ibeacon_uuid"] as String,
                 it["images"] as ArrayList<String>,
-                it["description"] as String,
+                it["description"] as? String?,
                 it["ibeacon_minor_id"] as String,
                 it["ibeacon_major_id"] as String,
                 it["audio_files"] as ArrayList<String>

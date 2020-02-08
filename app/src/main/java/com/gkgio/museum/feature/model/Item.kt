@@ -9,7 +9,7 @@ data class Item(
     val author: String,
     val ibeaconUuid: String,
     val images: List<String>,
-    val description: String,
+    val description: String?,
     val ibeaconMinorId: String,
     val ibeaconMajorId: String,
     val audioFiles: ArrayList<String>
