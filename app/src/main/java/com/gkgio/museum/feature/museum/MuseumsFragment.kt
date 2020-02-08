@@ -33,6 +33,7 @@ class MuseumsFragment : BaseFragment<MuseumsViewModel>() {
         viewModel.state.observeValue(this) { state ->
             state.museumsList?.let { museums ->
                 museumsAdapter?.setMuseumList(museums)
+                museumsTitle.isVisible = true
             }
 
             state.exhibitionsList?.let {
