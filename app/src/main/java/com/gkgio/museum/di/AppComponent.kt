@@ -41,8 +41,6 @@ interface AppComponent {
     val authViewModel: AuthViewModel
     val startViewModel: StartViewModel
 
-   // val bluetoothManager: BluetoothManager
-
     fun inject(app: Application)
 
     //analytics

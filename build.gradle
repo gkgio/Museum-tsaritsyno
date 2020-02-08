@@ -64,4 +64,5 @@ ext {
     altBeacon = '2.16.4'
     rxrelay = '2.1.1'
     rxandroidble = '1.11.0'
+    groupie = '2.7.2'
 }

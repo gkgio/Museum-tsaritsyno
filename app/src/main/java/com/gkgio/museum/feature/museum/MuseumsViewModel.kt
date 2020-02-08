@@ -40,10 +40,16 @@ class MuseumsViewModel @Inject constructor(
             state.value = State(isProgress = true)
 
             loadMuseums()
+
+            createMockExhibitions()
         }
     }
 
-    fun loadMuseums() {
+    fun onSwipeToRefresh() {
+        loadMuseums()
+    }
+
+    private fun loadMuseums() {
         firestoreDB.collection(com.gkgio.museum.BuildConfig.TABLE_MUSEUMS_FIRESTORE_PATH)
             .get()
             .addOnSuccessListener { snapshot ->
@@ -74,13 +80,47 @@ class MuseumsViewModel @Inject constructor(
             }
     }
 
+    private fun createMockExhibitions() {
+        val exhibitionsList = mutableListOf<Exhibition>()
+        val exhibitionAleksand2 = Exhibition(
+            "1",
+            "Колекция одного из петербургских дворцов - музеев в \"Царицыне\"",
+            "http://tsaritsyno-museum.ru/uploads/2019/05/aleksandr-II-613x960.jpg",
+            "19 ноября 2019 — 10 мая 2020",
+            "Екатеринский копус Монплезира",
+            "permanent",
+            listOf()
+        )
+
+        val exhibitionSilverPantry = Exhibition(
+            "2",
+            "Произведения русского ювелирного искусства XVI-XX веков",
+            "http://tsaritsyno-museum.ru/uploads/2017/09/797_mainfoto1_03.jpg",
+            "12 декабря 2019 — 16 февраля 2020",
+            "Серебрянная кладовая \"Царицына\"",
+            "permanent",
+            listOf()
+        )
+        exhibitionsList.add(exhibitionAleksand2)
+        exhibitionsList.add(exhibitionSilverPantry)
+
+        state.value = state.nonNullValue.copy(
+            exhibitionsList = exhibitionsList
+        )
+    }
+
     fun onMuseumClick(museum: Museum) {
+
+    }
+
+    fun onExhibitionClick(exhibition: Exhibition) {
 
     }
 
     data class State(
         val isProgress: Boolean,
-        val museumsList: MutableList<Museum>? = null
+        val museumsList: MutableList<Museum>? = null,
+        val exhibitionsList: MutableList<Exhibition>? = null
     )
 
 }

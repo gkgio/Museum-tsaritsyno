@@ -110,6 +110,9 @@ dependencies {
     //cloud messaging
     implementation "com.google.firebase:firebase-messaging:${rootProject.cloudMessaging}"
 
+    //groupie
+    implementation "com.xwray:groupie:${rootProject.groupie}"
+
     // ALT Beacon library
     implementation "org.altbeacon:android-beacon-library:${rootProject.altBeacon}"
 

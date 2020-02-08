@@ -24,7 +24,10 @@ fun Context.checkWriteStorageGranted() =
 
 fun Fragment.requestLocationPermission(): Observable<Boolean> =
     RxPermissions(this)
-        .request(Manifest.permission.ACCESS_COARSE_LOCATION)
+        .request(
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
 
 fun Fragment.requestWriteStoragePermission(): Observable<Boolean> =
     RxPermissions(this)

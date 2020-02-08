@@ -19,4 +19,5 @@
     <string name="welcome_auto_work_text">Все работает автоматически не надо разбираться в интерфейсе</string>
     <string name="welcome_read_inform_text">Читай и смотри информацию об интересующем экспонате</string>
     <string name="btn_confirm">Понятно</string>
+    <string name="exhibition_title">Экспозиции</string>
 </resources>

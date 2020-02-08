@@ -17,7 +17,7 @@ class MuseumsAdapter(
 
     private val museumsList = mutableListOf<Museum>()
 
-    fun setMuseumTypesList(museumsList: MutableList<Museum>) {
+    fun setMuseumList(museumsList: MutableList<Museum>) {
         this.museumsList.clear()
         this.museumsList.addAll(museumsList)
         notifyDataSetChanged()
