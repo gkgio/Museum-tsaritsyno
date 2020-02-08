@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="grey">#fafafa</color>
+    <color name="splash">#131415</color>
+    <color name="tab_selected">#c99700</color>
+    <color name="tab_default">#767676</color>
+    <color name="button">#c99700</color>
+    <color name="allow_right">#959ba4</color>
+    <color name="blue">#007aff</color>
+
+    <color name="status_bar_color">#D2D2D2</color>
+    <color name="navigation_bar_color">#C3BCBC</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_60">#99FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="black_100">#FF000000</color>
+    <color name="under_line">#DEDEDE</color>
+    <color name="transparent">#00000000</color>
+</resources>
