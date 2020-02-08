@@ -18,6 +18,7 @@
     <color name="white">#FFFFFF</color>
     <color name="white_60">#99FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="black_40">#66000000</color>
     <color name="black_100">#FF000000</color>
     <color name="under_line">#DEDEDE</color>
     <color name="transparent">#00000000</color>

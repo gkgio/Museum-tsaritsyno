@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="24dp"
     android:background="@drawable/round_angle_background_16"
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/museumImg"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        tools:ignore="ContentDescription" />
 
+    <View
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@color/black_40" />
+
+    <TextView
+        android:id="@+id/museumTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        tools:text="play music" />
 
 </FrameLayout>

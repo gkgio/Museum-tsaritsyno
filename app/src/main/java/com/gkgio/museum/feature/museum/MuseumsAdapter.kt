@@ -2,10 +2,14 @@ package com.gkgio.museum.feature.museum
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gkgio.museum.R
 import com.gkgio.museum.ext.setDebounceOnClickListener
+import com.gkgio.museum.ext.withCenterCropRoundedCorners
+import com.gkgio.museum.ext.withFade
 import com.gkgio.museum.feature.model.Museum
 import com.gkgio.museum.view.SyntheticViewHolder
+import kotlinx.android.synthetic.main.museum_recycler_item.view.*
 
 class MuseumsAdapter(
     val itemClick: (museum: Museum) -> Unit
@@ -27,6 +31,13 @@ class MuseumsAdapter(
         with(holder.itemView) {
 
             val museum = museumsList[position]
+            Glide.with(context)
+                .load(museum.imageUrl)
+                .withFade()
+                .withCenterCropRoundedCorners(context)
+                .into(museumImg)
+
+            museumTitle.text = museum.title
 
             setDebounceOnClickListener { itemClick(museum) }
         }

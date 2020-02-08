@@ -7,7 +7,8 @@ import com.gkgio.museum.R
 import com.gkgio.museum.base.BaseFragment
 import com.gkgio.museum.di.AppInjector
 import com.gkgio.museum.ext.createViewModel
-import com.gkgio.museum.ext.requestLocationPermission
+import com.gkgio.museum.ext.observeValue
+import com.gkgio.museum.utils.DialogUtils
 import kotlinx.android.synthetic.main.fragment_museums.*
 
 
@@ -25,6 +26,16 @@ class MuseumsFragment : BaseFragment<MuseumsViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         initMuseumsRv()
+
+        viewModel.state.observeValue(this) { state ->
+            state.museumsList?.let {
+                museumsAdapter?.setMuseumTypesList(it)
+            }
+        }
+
+        viewModel.errorEvent.observeValue(this) {
+            DialogUtils.showError(view, it)
+        }
     }
 
     private fun initMuseumsRv() {

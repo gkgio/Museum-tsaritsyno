@@ -27,6 +27,8 @@ android {
         versionName rootProject.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "TABLE_MUSEUMS_FIRESTORE_PATH", "\"museums\""
     }
 
     compileOptions {
@@ -73,9 +75,6 @@ dependencies {
     //moshi
     implementation "com.squareup.moshi:moshi:${rootProject.moshi}"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:${rootProject.moshi}"
-
-    //inputmask
-    implementation "com.redmadrobot:input-mask-android:${rootProject.imputMask}"
 
     // di
     implementation "com.google.dagger:dagger:${rootProject.daggerVersion}"

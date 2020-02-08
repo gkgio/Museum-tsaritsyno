@@ -14,6 +14,7 @@ import com.gkgio.museum.R
 import com.gkgio.museum.ext.createViewModel
 import com.gkgio.museum.ext.observeValue
 import com.gkgio.museum.ext.requestLocationPermission
+import com.gkgio.museum.feature.audios.AudioPlayerSheet
 import com.gkgio.museum.utils.DialogUtils
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.altbeacon.beacon.*
@@ -23,6 +24,9 @@ class MainFragment : BaseFragment<MainViewModel>(), BottomBarTabsSwitcher, Beaco
     RangeNotifier {
 
     private companion object {
+
+        val TAG = MainFragment::class.java.simpleName
+
         private const val PAGE_CACHE_SIZE = 4
         private const val PAGE_MUSEUMS = 0
         private const val PAGE_AUDIOS = 1
@@ -88,6 +92,12 @@ class MainFragment : BaseFragment<MainViewModel>(), BottomBarTabsSwitcher, Beaco
         viewModel.startEnableBluetoothIntent.observeValue(this) {
             val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             startActivity(enableBtIntent)
+        }
+
+        viewModel.state.observeValue(this) { state ->
+            state.currentIBeacon?.let {
+                showDialog(AudioPlayerSheet.newInstance(it), TAG)
+            }
         }
     }
 

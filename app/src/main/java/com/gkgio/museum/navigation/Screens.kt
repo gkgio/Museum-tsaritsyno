@@ -1,10 +1,12 @@
 package com.gkgio.museum.navigation
 
 import android.content.Context
+import androidx.fragment.app.Fragment
 import com.gkgio.museum.utils.IntentUtils
 import com.gkgio.museum.activity.MainFragment
 import com.gkgio.museum.feature.auth.AuthFragment
 import com.gkgio.museum.feature.museum.MuseumsFragment
+import com.gkgio.museum.feature.museum.detail.MuseumDetailFragment
 import com.gkgio.museum.feature.profile.ProfileFragment
 import com.gkgio.museum.feature.splash.SpalshFragment
 import com.gkgio.museum.feature.start.StartFragment
@@ -30,6 +32,10 @@ object Screens {
 
     object MuseumsFragmentScreen : SupportAppScreen() {
         override fun getFragment() = MuseumsFragment()
+    }
+
+    object MuseumDetailFragmentScreen : SupportAppScreen() {
+        override fun getFragment() = MuseumDetailFragment()
     }
 
     object AuthFragmentScreen : SupportAppScreen() {
