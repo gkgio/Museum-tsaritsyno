@@ -53,7 +53,7 @@ class ItemsFragment : BaseFragment<ItemsViewModel>() {
         viewModel.init(itemsList as MutableList<Item>)
 
         viewModel.openItemSheet.observeValue(this) {
-            showDialog(AudioPlayerSheet.newInstance(null, it), TAG)
+            showDialog(AudioPlayerSheet.newInstance(it), TAG)
         }
 
         initItemsRv()

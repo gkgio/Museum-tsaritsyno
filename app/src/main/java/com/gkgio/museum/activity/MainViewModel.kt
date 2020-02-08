@@ -7,12 +7,17 @@ import com.gkgio.museum.base.BaseViewModel
 import com.gkgio.museum.ext.applySchedulers
 import com.gkgio.museum.activity.bluetooth.BleManagerContract
 import com.gkgio.museum.activity.bluetooth.Resource
+import com.gkgio.museum.base.ResourceManager
 import com.gkgio.museum.ext.isNonInitialized
 import com.gkgio.museum.ext.nonNullValue
+import com.gkgio.museum.feature.model.Item
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.polidea.rxandroidble2.exceptions.BleScanException
 import com.polidea.rxandroidble2.scan.ScanResult
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import org.altbeacon.beacon.Beacon
 import java.util.concurrent.TimeUnit
@@ -22,8 +27,14 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     firebaseAnalytics: FirebaseAnalytics,
     private val bleManager: BleManagerContract,
-    private val prefs: SharedPreferences
+    private val prefs: SharedPreferences,
+    private val resourceManager: ResourceManager,
+    private val moshi: Moshi
 ) : BaseViewModel() {
+
+    companion object {
+        private const val ITEMS_FILENAME = "mock_items.json"
+    }
 
     val showErrorBluetoothNotAvailable = SingleLiveEvent<Unit>()
     val startEnableBluetoothIntent = SingleLiveEvent<Unit>()
@@ -80,13 +91,32 @@ class MainViewModel @Inject constructor(
     }
 
     fun onNewBeaconDetected(beacon: Beacon) {
-      /*  if (beacon.id1 != state.nonNullValue.currentIBeacon?.id1
-            && beacon.id2 != state.nonNullValue.currentIBeacon?.id2
-        ) {
-            state.value = state.nonNullValue.copy(
-                currentIBeacon = beacon
-            )
-        }*/
+        findItemByBeacon(beacon)?.let {
+            if (it != state.nonNullValue.currentItem) {
+                state.value = state.nonNullValue.copy(
+                    currentItem = it
+                )
+            }
+        }
+    }
+
+    private fun findItemByBeacon(beacon: Beacon): Item? {
+        resourceManager.getJsonFromAssets(ITEMS_FILENAME)?.let { json ->
+            val type = Types.newParameterizedType(List::class.java, Item::class.java)
+            val adapter = moshi.adapter<List<Item>>(type)
+
+            adapter.fromJson(json)?.let { array ->
+                array.forEach {
+                    if (it.ibeaconUuid == beacon.id1.toString()
+                        && it.ibeaconMajorId == beacon.id2.toString()
+                    ) {
+                        return it
+                    }
+                }
+            }
+        }
+
+        return null
     }
 
     fun onLocationPermissionResultLoaded(result: Boolean) =
@@ -110,6 +140,6 @@ class MainViewModel @Inject constructor(
     }
 
     data class State(
-        val currentIBeacon: Beacon? = null
+        val currentItem: Item? = null
     )
 }

@@ -1,6 +1,7 @@
 package com.gkgio.museum.di
 
 import android.app.Application
+import android.content.Context
 import com.gkgio.museum.feature.profile.ProfileViewModel
 import com.gkgio.museum.activity.LaunchActivity
 import com.gkgio.museum.activity.LaunchViewModel
@@ -16,6 +17,7 @@ import com.gkgio.museum.feature.museum.detail.items.ItemsViewModel
 import com.gkgio.museum.feature.splash.SplashViewModel
 import com.gkgio.museum.feature.start.StartViewModel
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.squareup.moshi.Moshi
 import dagger.Component
 import org.altbeacon.beacon.BeaconManager
 import ru.terrakok.cicerone.NavigatorHolder
@@ -34,6 +36,9 @@ interface AppComponent {
 
     fun inject(launchActivity: LaunchActivity)
     fun inject(baseFragment: BaseFragment<BaseViewModel>)
+
+    val moshi: Moshi
+    val context: Context
 
     val launchViewModel: LaunchViewModel
     val mainViewModel: MainViewModel

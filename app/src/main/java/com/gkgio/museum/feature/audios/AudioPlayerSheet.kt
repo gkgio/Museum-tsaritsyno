@@ -19,25 +19,21 @@ import org.altbeacon.beacon.Beacon
 class AudioPlayerSheet : BaseBottomSheetDialog() {
 
     companion object {
-        const val KEY_BEACON = "KEY_BEACON"
         const val KEY_ITEM = "KEY_ITEM"
 
-        fun newInstance(beacon: Beacon? = null, item: Item? = null) = AudioPlayerSheet().apply {
+        fun newInstance(item: Item) = AudioPlayerSheet().apply {
             arguments = Bundle().apply {
-                putParcelable(KEY_BEACON, beacon)
                 putParcelable(KEY_ITEM, item)
             }
         }
     }
 
-    private var beacon: Beacon? = null
     private var item: Item? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            beacon = it.getParcelable(KEY_BEACON)
             item = it.getParcelable(KEY_ITEM)
         }
     }
@@ -47,7 +43,6 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
     override fun setupView(view: View): Unit = with(view) {
         super.setupView(view)
 
-        //var url = "https://www.kozco.com/tech/piano2-CoolEdit.mp3"
         item?.let {
             Glide.with(context)
                 .load(it.images[0])

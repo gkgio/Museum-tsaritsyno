@@ -1,0 +1,44 @@
+[
+  {
+    "id": "3",
+    "author": "Владимир Дмитрий",
+    "audioFiles": [
+      "https://firebasestorage.googleapis.com/v0/b/museum-14746.appspot.com/o/Fortepiano.mp3?alt=media&token=a5461b10-cee9-4acc-addc-a187a378bd66"
+    ],
+    "images": [
+      "http://tsaritsyno-museum.ru/uploads/2017/09/1521_mainfoto1_03-1.jpg"
+    ],
+    "description": "Мраморные головы загадочно смотрящие",
+    "ibeaconUuid": "b0702880-a295-a8ab-f734-031a98a512de",
+    "ibeaconMajorId": "234",
+    "ibeaconMinorId": "3"
+  },
+  {
+    "id": "2",
+    "author": "Олег Молодец",
+    "audioFiles": [
+      "https://mp3set.info/mp3/22192724.mp3"
+    ],
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Schirmm%C3%BCtze_Marschall_der_UDSSR.jpg/220px-Schirmm%C3%BCtze_Marschall_der_UDSSR.jpg"
+    ],
+    "description": "Фуражка Александра I",
+    "ibeaconUuid": "b0702880-a295-a8ab-f734-031a98a512de",
+    "ibeaconMajorId": "2345",
+    "ibeaconMinorId": "3"
+  },
+  {
+    "id": "1",
+    "author": "Георгий Олег",
+    "audioFiles": [
+      "https://firebasestorage.googleapis.com/v0/b/museum-14746.appspot.com/o/Fortepiano.mp3?alt=media&token=a5461b10-cee9-4acc-addc-a187a378bd66"
+    ],
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Schirmm%C3%BCtze_Marschall_der_UDSSR.jpg/220px-Schirmm%C3%BCtze_Marschall_der_UDSSR.jpg"
+    ],
+    "description": "Влюбленная на кентавре",
+    "ibeaconUuid": "b0702880-a295-a8ab-f734-031a98a512de",
+    "ibeaconMajorId": "23456",
+    "ibeaconMinorId": "3"
+  }
+]

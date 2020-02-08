@@ -95,7 +95,7 @@ class MainFragment : BaseFragment<MainViewModel>(), BottomBarTabsSwitcher, Beaco
         }
 
         viewModel.state.observeValue(this) { state ->
-            state.currentIBeacon?.let {
+            state.currentItem?.let {
                 showDialog(AudioPlayerSheet.newInstance(it), TAG)
             }
         }
