@@ -10,7 +10,7 @@ import com.gkgio.museum.feature.profile.ProfileViewModel
 
 class MuseumDetailFragment : BaseFragment<ProfileViewModel>() {
 
-    override fun getLayoutId(): Int = R.layout.fragment_profile
+    override fun getLayoutId(): Int = R.layout.fragment_museum_detail
 
     override fun provideViewModel() = createViewModel {
         AppInjector.appComponent.profileViewModel

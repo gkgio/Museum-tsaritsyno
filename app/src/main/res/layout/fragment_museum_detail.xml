@@ -5,4 +5,8 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <com.gkgio.museum.view.ToolbarTwoIconView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

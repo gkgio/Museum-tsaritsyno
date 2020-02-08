@@ -10,6 +10,7 @@ import com.gkgio.museum.ext.isInitialized
 import com.gkgio.museum.ext.isNonInitialized
 import com.gkgio.museum.ext.nonNullValue
 import com.gkgio.museum.feature.model.Exhibition
+import com.gkgio.museum.feature.model.Item
 import com.gkgio.museum.feature.model.Museum
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.firestore.BuildConfig
@@ -49,6 +50,7 @@ class MuseumsViewModel @Inject constructor(
         loadMuseums()
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun loadMuseums() {
         firestoreDB.collection(com.gkgio.museum.BuildConfig.TABLE_MUSEUMS_FIRESTORE_PATH)
             .get()
@@ -58,7 +60,7 @@ class MuseumsViewModel @Inject constructor(
                 museumsListSnapshot.forEach {
                     val museum = Museum(
                         it.document.get("_id") as String,
-                        it.document.get("exhibitions") as? ArrayList<Exhibition> ?: arrayListOf(),
+                        getExhibitions(it.document.get("exhibitions") as? ArrayList<HashMap<String, Any>>?),
                         it.document.get("image_url") as String,
                         it.document.get("latitude") as String,
                         it.document.get("longitude") as String,
@@ -79,6 +81,49 @@ class MuseumsViewModel @Inject constructor(
                 )
             }
     }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun getExhibitions(exhibitionsMap: ArrayList<HashMap<String, Any>>?): List<Exhibition>? {
+        if (exhibitionsMap.isNullOrEmpty()) return null
+
+        val exhibitionsList = mutableListOf<Exhibition>()
+        exhibitionsMap.forEach {
+            val exhibition = Exhibition(
+                it["_id"] as String,
+                it["description"] as String,
+                it["image_url"] as String,
+                it["time"] as String,
+                it["title"] as String,
+                it["description"] as String,
+                getItems(it["items"] as? ArrayList<HashMap<String, Any>>?)
+            )
+            exhibitionsList.add(exhibition)
+        }
+
+        return exhibitionsList
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun getItems(itemsMap: ArrayList<HashMap<String, Any>>?): List<Item>? {
+        if (itemsMap.isNullOrEmpty()) return null
+
+        val itemList = mutableListOf<Item>()
+        itemsMap.forEach {
+            val item = Item(
+                it["_id"] as String,
+                it["author"] as String,
+                it["ibeacon_uuid"] as String,
+                it["images"] as ArrayList<String>,
+                it["description"] as String,
+                it["ibeacon_minor_id"] as String,
+                it["ibeacon_major_id"] as String,
+                it["audio_files"] as ArrayList<String>
+            )
+            itemList.add(item)
+        }
+        return itemList
+    }
+
 
     private fun createMockExhibitions() {
         val exhibitionsList = mutableListOf<Exhibition>()

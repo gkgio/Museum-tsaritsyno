@@ -11,5 +11,5 @@ data class Exhibition(
     val time: String,
     val title: String,
     val type: String,
-    val items: List<Item>
+    val items: List<Item>?
 ) : Parcelable

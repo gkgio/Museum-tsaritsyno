@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Museum(
     val id: String,
-    val exhibitions: List<Exhibition>,
+    val exhibitions: List<Exhibition>?,
     val imageUrl: String,
     val latitude: String,
     val longitude: String,

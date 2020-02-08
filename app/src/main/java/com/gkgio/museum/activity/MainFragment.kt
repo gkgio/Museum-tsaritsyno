@@ -45,10 +45,10 @@ class MainFragment : BaseFragment<MainViewModel>(), BottomBarTabsSwitcher, Beaco
         super.onResume()
         beaconManager = AppInjector.appComponent.provideBeaconManager()
 
-        /*if (beaconManager?.isBound(this) != true) {
+        if (beaconManager?.isBound(this) != true) {
             Timber.d("binding beaconManager")
             beaconManager?.bind(this)
-        }*/
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

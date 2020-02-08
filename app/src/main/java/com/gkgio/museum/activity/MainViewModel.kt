@@ -80,11 +80,13 @@ class MainViewModel @Inject constructor(
     }
 
     fun onNewBeaconDetected(beacon: Beacon) {
-        if (beacon != state.nonNullValue.currentIBeacon) {
+      /*  if (beacon.id1 != state.nonNullValue.currentIBeacon?.id1
+            && beacon.id2 != state.nonNullValue.currentIBeacon?.id2
+        ) {
             state.value = state.nonNullValue.copy(
                 currentIBeacon = beacon
             )
-        }
+        }*/
     }
 
     fun onLocationPermissionResultLoaded(result: Boolean) =
