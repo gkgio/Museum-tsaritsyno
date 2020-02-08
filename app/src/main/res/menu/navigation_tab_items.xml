@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/tab_museums"
+        android:icon="@drawable/ic_tab_museums"
+        android:title="@string/tab_name_museums" />
+
+    <item
+        android:id="@+id/tab_audios"
+        android:icon="@drawable/ic_tab_audios"
+        android:title="@string/tab_name_audios" />
+
+    <item
+        android:id="@+id/tab_profile"
+        android:icon="@drawable/ic_tab_profile"
+        android:title="@string/tab_name_profile" />
+</menu>

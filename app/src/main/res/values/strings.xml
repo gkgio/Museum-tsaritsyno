@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Museum</string>
+    <string name="tab_name_museums">Музеи</string>
+    <string name="tab_name_profile">Профиль</string>
+    <string name="tab_name_audios">Мой аудиогиды</string>
+
+    <string name="bluetooth_disabled">Блютус недоступен</string>
+    <string name="turning_bluetooth_off">Блютус выключен</string>
+    <string name="bluetooth_enabled">Блютус доступен</string>
+    <string name="turning_bluetooth_on">Блютус включен</string>
+    <string name="select_language_title">Please select a language</string>
+    <string name="russian">Russian</string>
+    <string name="btn_continue">Продолжить</string>
+    <string name="select_interface_language">App interface</string>
+    <string name="select_audio_language">Audioguide language</string>
+
+    <string name="welcome_banner_title">Добро пожаловать в Аудиогид</string>
+    <string name="welcome_listen_text">Слушай описание экспонатов когда находишься рядом с ним</string>
+    <string name="welcome_auto_work_text">Все работает автоматически не надо разбираться в интерфейсе</string>
+    <string name="welcome_read_inform_text">Читай и смотри информацию об интересующем экспонате</string>
+    <string name="btn_confirm">Понятно</string>
+</resources>
