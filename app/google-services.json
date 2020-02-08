@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "126488652253",
+    "firebase_url": "https://museum-14746.firebaseio.com",
+    "project_id": "museum-14746",
+    "storage_bucket": "museum-14746.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126488652253:android:82df01d744608ae7456e34",
+        "android_client_info": {
+          "package_name": "com.gkgio.museum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126488652253-tfd0q3oqqbnil51d4bahfm58gkv8geci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiUuYl2zpvT75q7p0Pp4Xls-2eFldrvYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126488652253-tfd0q3oqqbnil51d4bahfm58gkv8geci.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

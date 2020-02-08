@@ -1,0 +1,127 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
+
+
+androidExtensions {
+    experimental = true
+}
+
+android {
+    lintOptions {
+        lintConfig file("$projectDir/lint.xml")
+        warningsAsErrors true
+    }
+
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.gkgio.museum"
+
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            //signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "androidx.appcompat:appcompat:${rootProject.androidx}"
+    implementation "com.google.android.material:material:${rootProject.materialComponents}"
+    implementation "androidx.preference:preference:${rootProject.prefereces}"
+
+    //ktx
+    implementation "androidx.core:core-ktx:${rootProject.ktx}"
+    implementation "androidx.activity:activity-ktx:${rootProject.ktxActivity}"
+
+    //rx
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.rxAndroid}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rootProject.rxKotlin}"
+
+    //rxPermissions
+    implementation "com.github.tbruyelle:rxpermissions:${rootProject.rxPermissions}"
+
+    //firebase
+    implementation "com.google.firebase:firebase-analytics:${rootProject.firebaseAnalitics}"
+
+    //moshi
+    implementation "com.squareup.moshi:moshi:${rootProject.moshi}"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:${rootProject.moshi}"
+
+    //inputmask
+    implementation "com.redmadrobot:input-mask-android:${rootProject.imputMask}"
+
+    // di
+    implementation "com.google.dagger:dagger:${rootProject.daggerVersion}"
+    implementation "com.google.dagger:dagger-android:${rootProject.daggerVersion}"
+    implementation "com.google.dagger:dagger-android-support:${rootProject.daggerVersion}"
+    kapt "com.google.dagger:dagger-compiler:${rootProject.daggerVersion}"
+    kapt "com.google.dagger:dagger-android-processor:${rootProject.daggerVersion}"
+
+    //lifecycleComponents
+    implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.lifecycleComponents}"
+
+    //firestore
+    implementation "com.google.firebase:firebase-firestore:${rootProject.firestore}"
+
+    //firebase storage
+    implementation "com.google.firebase:firebase-storage:${rootProject.firebaseStorage}"
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:${rootProject.glide}"
+
+    //Stfalcon Image Viewer
+    implementation "com.github.stfalcon:stfalcon-imageviewer:${rootProject.stfalcon}"
+
+    //timber
+    implementation "com.jakewharton.timber:timber:${rootProject.timber}"
+
+    //multidex
+    implementation "androidx.multidex:multidex:${rootProject.multidex}"
+
+    //jodaTime
+    implementation "joda-time:joda-time:${rootProject.jodaTime}"
+
+    //cloud messaging
+    implementation "com.google.firebase:firebase-messaging:${rootProject.cloudMessaging}"
+
+    // ALT Beacon library
+    implementation "org.altbeacon:android-beacon-library:${rootProject.altBeacon}"
+
+    implementation "com.jakewharton.rxrelay2:rxrelay:${rootProject.rxrelay}"
+
+    implementation "com.polidea.rxandroidble2:rxandroidble:${rootProject.rxandroidble}"
+
+    //test
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+apply plugin: 'com.google.gms.google-services'
