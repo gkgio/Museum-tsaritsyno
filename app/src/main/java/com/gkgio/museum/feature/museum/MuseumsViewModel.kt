@@ -12,12 +12,14 @@ import com.gkgio.museum.ext.nonNullValue
 import com.gkgio.museum.feature.model.Exhibition
 import com.gkgio.museum.feature.model.Item
 import com.gkgio.museum.feature.model.Museum
+import com.gkgio.museum.navigation.Screens
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.firestore.BuildConfig
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.storage.FirebaseStorage
 import ru.terrakok.cicerone.Router
+import ru.terrakok.cicerone.Screen
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -94,7 +96,7 @@ class MuseumsViewModel @Inject constructor(
                 it["image_url"] as String,
                 it["time"] as String,
                 it["title"] as String,
-                it["description"] as String,
+                it["type"] as String,
                 getItems(it["items"] as? ArrayList<HashMap<String, Any>>?)
             )
             exhibitionsList.add(exhibition)
@@ -155,7 +157,9 @@ class MuseumsViewModel @Inject constructor(
     }
 
     fun onMuseumClick(museum: Museum) {
-
+        if (museum.exhibitions != null) {
+            router.navigateTo(Screens.MuseumDetailContainerScreen(museum.title, museum.exhibitions))
+        }
     }
 
     fun onExhibitionClick(exhibition: Exhibition) {

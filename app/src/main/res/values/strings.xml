@@ -21,4 +21,8 @@
     <string name="btn_confirm">Понятно</string>
     <string name="exhibition_title">Экспозиции</string>
     <string name="museums_title">Музей</string>
+    <string name="permanent_exhibition">Постоянные</string>
+    <string name="temporary_exhibition">Временные</string>
+
+    <string name="item_description_title">Описание</string>
 </resources>
