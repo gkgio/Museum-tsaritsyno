@@ -9,6 +9,9 @@ import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.gkgio.museum.R
 import com.gkgio.museum.base.bottomsheet.BaseBottomSheetDialog
+import com.gkgio.museum.di.AppInjector
+import com.gkgio.museum.ext.createViewModel
+import com.gkgio.museum.ext.observeValue
 import com.gkgio.museum.ext.withCenterCropRoundedCorners
 import com.gkgio.museum.ext.withFade
 import com.gkgio.museum.feature.model.Item
@@ -29,9 +32,16 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
     }
 
     private var item: Item? = null
+    private var mediaPlayer: MediaPlayer? = null
+    private lateinit var viewModel: AudioPlayerViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = createViewModel { AppInjector.appComponent.audioPlayerViewModel }
+
+        viewModel.closeSheet.observeValue(this) {
+            dismiss()
+        }
 
         arguments?.let {
             item = it.getParcelable(KEY_ITEM)
@@ -52,7 +62,7 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
 
             description.text = it.description
 
-            val mediaPlayer: MediaPlayer? = MediaPlayer().apply {
+            mediaPlayer = MediaPlayer().apply {
                 setAudioStreamType(AudioManager.STREAM_MUSIC)
                 setDataSource(it.audioFiles[0])
                 prepare() // might take long! (for buffering, etc)
@@ -63,5 +73,10 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
                 player.release()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer?.reset()
     }
 }

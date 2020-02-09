@@ -11,6 +11,7 @@ import com.gkgio.museum.base.ResourceManager
 import com.gkgio.museum.ext.isNonInitialized
 import com.gkgio.museum.ext.nonNullValue
 import com.gkgio.museum.feature.model.Item
+import com.gkgio.museum.utils.AudioDissmisEvent
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.polidea.rxandroidble2.exceptions.BleScanException
 import com.polidea.rxandroidble2.scan.ScanResult
@@ -29,7 +30,8 @@ class MainViewModel @Inject constructor(
     private val bleManager: BleManagerContract,
     private val prefs: SharedPreferences,
     private val resourceManager: ResourceManager,
-    private val moshi: Moshi
+    private val moshi: Moshi,
+    private val audioDissmisEvent: AudioDissmisEvent
 ) : BaseViewModel() {
 
     companion object {
@@ -42,6 +44,7 @@ class MainViewModel @Inject constructor(
     val enableLocationServices = SingleLiveEvent<Unit>()
 
     val state = MutableLiveData<State>()
+    var countCheck = 0
 
     private var bluetoothScannerDisposable: Disposable? = null
 
@@ -93,9 +96,15 @@ class MainViewModel @Inject constructor(
     fun onNewBeaconDetected(beacon: Beacon) {
         findItemByBeacon(beacon)?.let {
             if (it != state.nonNullValue.currentItem) {
-                state.value = state.nonNullValue.copy(
-                    currentItem = it
-                )
+                audioDissmisEvent.onComplete(0)
+                if (countCheck > 0) {
+                    countCheck = 0
+                    state.value = state.nonNullValue.copy(
+                        currentItem = it
+                    )
+                } else {
+                    countCheck++
+                }
             }
         }
     }

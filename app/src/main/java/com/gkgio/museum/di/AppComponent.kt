@@ -8,6 +8,7 @@ import com.gkgio.museum.activity.LaunchViewModel
 import com.gkgio.museum.activity.MainViewModel
 import com.gkgio.museum.base.BaseFragment
 import com.gkgio.museum.base.BaseViewModel
+import com.gkgio.museum.feature.audios.AudioPlayerViewModel
 import com.gkgio.museum.feature.audios.AudiosViewModel
 import com.gkgio.museum.feature.auth.AuthViewModel
 import com.gkgio.museum.feature.museum.MuseumsViewModel
@@ -51,6 +52,7 @@ interface AppComponent {
     val museumsDetailContainerViewModel: MuseumDetailContainerViewModel
     val museumsDetailViewModel: MuseumDetailViewModel
     val itemsViewModel: ItemsViewModel
+    val audioPlayerViewModel: AudioPlayerViewModel
 
     fun inject(app: Application)
 
