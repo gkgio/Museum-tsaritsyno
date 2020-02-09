@@ -10,7 +10,7 @@ import com.gkgio.museum.ext.createViewModel
 
 class AudiosFragment : BaseFragment<AudiosViewModel>() {
 
-    override fun getLayoutId(): Int = R.layout.fragment_profile
+    override fun getLayoutId(): Int = R.layout.fragment_audios
 
     override fun provideViewModel() = createViewModel {
         AppInjector.appComponent.audiosViewModel

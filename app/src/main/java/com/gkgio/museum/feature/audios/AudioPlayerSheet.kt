@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.gkgio.museum.R
 import com.gkgio.museum.base.bottomsheet.BaseBottomSheetDialog
@@ -54,6 +55,10 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
         super.setupView(view)
 
         item?.let {
+
+            title.text = it.title
+            title.isVisible = !it.title.isNullOrBlank()
+
             Glide.with(context)
                 .load(it.images[0])
                 .withFade()

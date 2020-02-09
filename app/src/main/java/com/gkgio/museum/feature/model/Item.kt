@@ -12,5 +12,6 @@ data class Item(
     val description: String?,
     val ibeaconMinorId: String,
     val ibeaconMajorId: String,
-    val audioFiles: List<String>
+    val audioFiles: List<String>,
+    val title: String?
 ) : Parcelable

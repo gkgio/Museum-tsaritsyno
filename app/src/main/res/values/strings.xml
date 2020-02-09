@@ -25,4 +25,7 @@
     <string name="temporary_exhibition">Временные</string>
 
     <string name="item_description_title">Описание</string>
+
+    <string name="unlogin_title">Пора залогиниться</string>
+    <string name="login">Залогиниться</string>
 </resources>

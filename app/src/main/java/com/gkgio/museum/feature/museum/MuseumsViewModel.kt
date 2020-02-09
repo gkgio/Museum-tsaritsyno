@@ -119,7 +119,8 @@ class MuseumsViewModel @Inject constructor(
                 it["description"] as? String?,
                 it["ibeacon_minor_id"] as String,
                 it["ibeacon_major_id"] as String,
-                it["audio_files"] as ArrayList<String>
+                it["audio_files"] as ArrayList<String>,
+                it["title"] as? String?
             )
             itemList.add(item)
         }
@@ -131,25 +132,36 @@ class MuseumsViewModel @Inject constructor(
         val exhibitionsList = mutableListOf<Exhibition>()
         val exhibitionAleksand2 = Exhibition(
             "1",
-            "Колекция одного из петербургских дворцов - музеев в \"Царицыне\"",
-            "http://tsaritsyno-museum.ru/uploads/2019/05/aleksandr-II-613x960.jpg",
+            "Влюбленная на кентавре",
+            "http:/tsaritsyno-museum.ru/uploads/2019/12/vlyublennaya-zhaba-3-1800x1200.jpg",
             "19 ноября 2019 — 10 мая 2020",
-            "Екатеринский копус Монплезира",
+            "Влюбленная жаба и другие",
             "permanent",
             listOf()
         )
 
         val exhibitionSilverPantry = Exhibition(
             "2",
-            "Произведения русского ювелирного искусства XVI-XX веков",
-            "http://tsaritsyno-museum.ru/uploads/2017/09/797_mainfoto1_03.jpg",
-            "12 декабря 2019 — 16 февраля 2020",
-            "Серебрянная кладовая \"Царицына\"",
+            "12 декабря в рамках выставки «Екатерининский корпус Монплезира. Путешествие из Петергофа в Царицыно» открывается экспозиция уникальных документов из Государственного архива РФ (ГАРФ)",
+            "http://tsaritsyno-museum.ru/uploads/2019/12/1.jpg",
+            "20 декабря 2019 — 16 февраля 2020",
+            "Отказ от трона. Цесаревич Константин Павлович и император Александр I",
+            "permanent",
+            listOf()
+        )
+
+        val exhibition3 = Exhibition(
+            "2",
+            "Собрание скульптуры из Московского музея-усадьбы Останкино с 13 ноября 2014 года можно увидеть в музее-заповеднике «Царицыно», в залах открытого после реставрации Оперного дома.  Выставка шедевров скульптуры из Останкинского дворца в стенах царицынского Оперного дома — это попытка воплотить в одном проекте две мечты, которые не удалось реализовать в XVIII веке.  Средний дворец (название «Оперный дом» появилось в XIX веке)",
+            "http://tsaritsyno-museum.ru/uploads/2017/09/1521_mainfoto1_03-1.jpg",
+            "20 декабря 2019 — 16 февраля 2020",
+            "Мраморные головы загадочно смотрящие",
             "permanent",
             listOf()
         )
         exhibitionsList.add(exhibitionAleksand2)
         exhibitionsList.add(exhibitionSilverPantry)
+        exhibitionsList.add(exhibition3)
 
         state.value = state.nonNullValue.copy(
             exhibitionsList = exhibitionsList
