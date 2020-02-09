@@ -71,6 +71,6 @@ class ItemsFragment : BaseFragment<ItemsViewModel>() {
         }
         itemsRv.adapter = itemsAdapter
         itemsRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(context)
     }
 }

@@ -2,23 +2,19 @@ package com.gkgio.museum.feature.audios
 
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
-import androidx.core.net.toUri
+import android.widget.SeekBar
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.gkgio.museum.R
 import com.gkgio.museum.base.bottomsheet.BaseBottomSheetDialog
 import com.gkgio.museum.di.AppInjector
-import com.gkgio.museum.ext.createViewModel
-import com.gkgio.museum.ext.observeValue
-import com.gkgio.museum.ext.withCenterCropRoundedCorners
-import com.gkgio.museum.ext.withFade
+import com.gkgio.museum.ext.*
 import com.gkgio.museum.feature.model.Item
-import com.gkgio.museum.utils.FragmentArgumentDelegate
+import kotlinx.android.synthetic.main.layout_audio_player.*
 import kotlinx.android.synthetic.main.layout_audio_player.view.*
-import org.altbeacon.beacon.Beacon
 
 class AudioPlayerSheet : BaseBottomSheetDialog() {
 
@@ -35,6 +31,18 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
     private var item: Item? = null
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var viewModel: AudioPlayerViewModel
+    //private var seekbarUpdateHandler: Handler? = null
+    //private var updateSeekbar: Runnable? = null
+
+    private val seekBarUpdateHandler: Handler = Handler()
+    private val updateSeekBar: Runnable = object : Runnable {
+        override fun run() {
+            mediaPlayer?.let { player ->
+                timeSeekBar.progress = player.currentPosition
+                seekBarUpdateHandler.postDelayed(this, 100)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +50,21 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
 
         viewModel.closeSheet.observeValue(this) {
             dismiss()
+        }
+
+        viewModel.playOrPause.observeValue(this) { isPlay ->
+            mediaPlayer?.let { player ->
+                if (isPlay) {
+                    seekBarUpdateHandler.postDelayed(updateSeekBar, 0)
+                    player.seekTo(player.currentPosition)
+                    player.start()
+                    playPauseIcon.setImageResource(R.drawable.ic_pause)
+                } else {
+                    seekBarUpdateHandler.removeCallbacks(updateSeekBar)
+                    player.pause()
+                    playPauseIcon.setImageResource(R.drawable.ic_play)
+                }
+            }
         }
 
         arguments?.let {
@@ -74,8 +97,39 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
                 start()
             }
 
-            mediaPlayer?.setOnCompletionListener { player ->
-                player.release()
+            mediaPlayer?.let { player ->
+                player.setOnCompletionListener {
+                    player.release()
+                }
+
+                player.setOnPreparedListener {
+                    seekBarUpdateHandler.post(updateSeekBar)
+                }
+
+                timeSeekBar.max = player.duration
+
+                timeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    }
+
+                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    }
+
+                    override fun onProgressChanged(
+                        seekBar: SeekBar?,
+                        progress: Int,
+                        fromUser: Boolean
+                    ) {
+                        if (fromUser) {
+                            player.seekTo(progress)
+                        }
+                    }
+
+                })
+            }
+
+            playPauseIcon.setDebounceOnClickListener {
+                viewModel.onPlayOrPauseButtonClick()
             }
         }
     }
@@ -83,5 +137,7 @@ class AudioPlayerSheet : BaseBottomSheetDialog() {
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer?.reset()
+        seekBarUpdateHandler.removeCallbacks(updateSeekBar)
+
     }
 }
